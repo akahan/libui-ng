@@ -42,7 +42,7 @@ void uiLabelSetAlignment(uiLabel *l, uiDrawTextAlign align)
         alignment = SS_RIGHT;
     }
 
-    SetWindowLong(t->hwnd, GWL_STYLE, alignment);
+    SetWindowLong(l->hwnd, GWL_STYLE, alignment);
 }
 
 uiLabel *uiNewLabel(const char *text)
