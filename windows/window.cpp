@@ -350,6 +350,30 @@ void uiWindowSetPosition(uiWindow *w, int x, int y)
 	w->changingPosition = FALSE;
 }
 
+// TODO use the work rect instead?
+void uiWindowSetPositionCenter(uiWindow *w)
+{
+    RECT wr, mr;
+    int x, y;
+    LONG wwid, mwid;
+    LONG wht, mht;
+
+    uiWindowsEnsureGetWindowRect(w->hwnd, &wr);
+    windowMonitorRect(w->hwnd, &mr);
+    wwid = wr.right - wr.left;
+    mwid = mr.right - mr.left;
+    x = (mwid - wwid) / 2;
+    wht = wr.bottom - wr.top;
+    mht = mr.bottom - mr.top;
+    y = (mht - wht) / 2;
+    // y is now evenly divided, however https://msdn.microsoft.com/en-us/library/windows/desktop/dn742502(v=vs.85).aspx says that 45% should go above and 55% should go below
+    // so just move 5% of the way up
+    // TODO should this be on the work area?
+    // TODO is this calculation correct?
+    y -= y / 20;
+    uiWindowSetPosition(w, x, y);
+}
+
 void uiWindowOnPositionChanged(uiWindow *w, void (*f)(uiWindow *, void *), void *data)
 {
 	w->onPositionChanged = f;

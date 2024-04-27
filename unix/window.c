@@ -205,6 +205,27 @@ void uiWindowSetPosition(uiWindow *w, int x, int y)
 			break;
 }
 
+void uiWindowSetPositionCenter(uiWindow *w)
+{
+    gint x, y;
+    GtkAllocation winalloc;
+    GdkWindow *gdkwin;
+    GdkScreen *screen;
+    GdkRectangle workarea;
+
+    gtk_widget_get_allocation(w->widget, &winalloc);
+    gdkwin = gtk_widget_get_window(w->widget);
+    screen = gdk_window_get_screen(gdkwin);
+    gdk_screen_get_monitor_workarea(screen,
+                                    gdk_screen_get_monitor_at_window(screen, gdkwin),
+                                    &workarea);
+
+    x = (workarea.width - winalloc.width) / 2;
+    y = (workarea.height - winalloc.height) / 2;
+    // TODO move up slightly? see what Mutter or GNOME Shell or GNOME Terminal do(es)?
+    uiWindowSetPosition(w, x, y);
+}
+
 void uiWindowOnPositionChanged(uiWindow *w, void (*f)(uiWindow *, void *), void *data)
 {
 	w->onPositionChanged = f;

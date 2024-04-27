@@ -282,6 +282,14 @@ void uiWindowSetPosition(uiWindow *w, int x, int y)
 	w->suppressPositionChanged = NO;
 }
 
+void uiWindowSetPositionCenter(uiWindow *w)
+{
+    w->suppressPositionChanged = YES;
+    [w->window center];
+    w->suppressPositionChanged = NO;
+}
+
+
 void uiWindowOnPositionChanged(uiWindow *w, void (*f)(uiWindow *, void *), void *data)
 {
 	w->onPositionChanged = f;
