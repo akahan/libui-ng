@@ -33,6 +33,18 @@ void uiLabelSetText(uiLabel *l, const char *text)
 	uiWindowsControlMinimumSizeChanged(uiWindowsControl(l));
 }
 
+void uiLabelSetAlignment(uiLabel *l, uiDrawTextAlign align)
+{
+    DWORD alignment = SS_LEFT;
+    if (align == uiDrawTextAlignCenter) {
+        alignment = SS_CENTER;
+    } else if (align == uiDrawTextAlignRight) {
+        alignment = SS_RIGHT;
+    }
+
+    SetWindowLong(t->hwnd, GWL_STYLE, alignment);
+}
+
 uiLabel *uiNewLabel(const char *text)
 {
 	uiLabel *l;

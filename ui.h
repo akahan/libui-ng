@@ -82,6 +82,14 @@ _UI_EXTERN void uiTimer(int milliseconds, int (*f)(void *data), void *data);
 
 _UI_EXTERN void uiOnShouldQuit(int (*f)(void *data), void *data);
 
+// uiDrawTextAlign specifies the alignment of lines of text in a
+// uiDrawTextLayout.
+// TODO should this really have Draw in the name?
+_UI_ENUM(uiDrawTextAlign) {
+    uiDrawTextAlignLeft,
+    uiDrawTextAlignCenter,
+    uiDrawTextAlignRight,
+};
 
 /**
  * Free the memory of a returned string.
@@ -921,6 +929,15 @@ _UI_EXTERN char *uiLabelText(uiLabel *l);
  * @memberof uiLabel
  */
 _UI_EXTERN void uiLabelSetText(uiLabel *l, const char *text);
+
+/**
+ * Sets the label alignment.
+ *
+ * @param l uiLabel instance.
+ * @param alignment uiDrawTextAlign value.
+ * @memberof uiLabel
+ */
+_UI_EXTERN void uiLabelSetAlignment(uiLabel *l, uiDrawTextAlign alignment);
 
 /**
  * Creates a new label.
@@ -2769,15 +2786,6 @@ _UI_EXTERN void uiFreeFontDescriptor(uiFontDescriptor *desc);
 //
 // TODO talk about OS-specific differences with text drawing that libui can't account for...
 typedef struct uiDrawTextLayout uiDrawTextLayout;
-
-// uiDrawTextAlign specifies the alignment of lines of text in a
-// uiDrawTextLayout.
-// TODO should this really have Draw in the name?
-_UI_ENUM(uiDrawTextAlign) {
-	uiDrawTextAlignLeft,
-	uiDrawTextAlignCenter,
-	uiDrawTextAlignRight,
-};
 
 // uiDrawTextLayoutParams describes a uiDrawTextLayout.
 // DefaultFont is used to render any text that is not attributed

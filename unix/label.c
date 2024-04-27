@@ -20,6 +20,18 @@ void uiLabelSetText(uiLabel *l, const char *text)
 	gtk_label_set_text(l->label, text);
 }
 
+void uiLabelSetAlignment(uiLabel *l, uiDrawTextAlign align)
+{
+    float alignment = 0;
+    if (align == uiDrawTextAlignCenter) {
+        alignment = 0.5;
+    } else if (align == uiDrawTextAlignRight) {
+        alignment = 1.0;
+    }
+
+    gtk_misc_set_alignment(l->misc, alignment, 0);
+}
+
 uiLabel *uiNewLabel(const char *text)
 {
 	uiLabel *l;

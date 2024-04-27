@@ -18,6 +18,18 @@ void uiLabelSetText(uiLabel *l, const char *text)
 	[l->textfield setStringValue:uiprivToNSString(text)];
 }
 
+void uiLabelSetAlignment(uiLabel *l, uiDrawTextAlign align)
+{
+    NSTextAlignment alignment = uiDrawTextAlignLeft;
+    if (align == uiDrawTextAlignCenter) {
+        alignment = NSTextAlignmentCenter;
+    } else if (align == uiDrawTextAlignRight) {
+        alignment = NSTextAlignmentRight;
+    }
+
+    [l->textfield setAlignment: alignment];
+}
+
 NSTextField *uiprivNewLabel(NSString *str)
 {
 	NSTextField *tf;
