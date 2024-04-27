@@ -35,14 +35,15 @@ void uiLabelSetText(uiLabel *l, const char *text)
 
 void uiLabelSetAlignment(uiLabel *l, uiDrawTextAlign align)
 {
-    DWORD alignment = SS_LEFT;
+    LONG alignment = SS_LEFT;
     if (align == uiDrawTextAlignCenter) {
         alignment = SS_CENTER;
     } else if (align == uiDrawTextAlignRight) {
         alignment = SS_RIGHT;
     }
 
-    SetWindowLong(l->hwnd, GWL_STYLE, alignment);
+    LONG style = GetWindowLong(header, GWL_STYLE);
+    SetWindowLong(l->hwnd, GWL_STYLE, style | alignment);
 }
 
 uiLabel *uiNewLabel(const char *text)
