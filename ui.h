@@ -340,6 +340,15 @@ _UI_EXTERN void uiWindowPosition(uiWindow *w, int *x, int *y);
 _UI_EXTERN void uiWindowSetPosition(uiWindow *w, int x, int y);
 
 /**
+ * Moves the window to the center screen.
+ *
+ * @param w uiWindow instance.
+ * @note This method is merely a hint and may be ignored on Unix platforms.
+ * @memberof uiWindow
+ */
+_UI_EXTERN void uiWindowSetPositionCenter(uiWindow *w);
+
+/**
  * Registers a callback for when the window moved.
  *
  * @param w uiWindow instance.
