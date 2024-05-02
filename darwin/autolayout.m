@@ -37,8 +37,12 @@ void uiprivJiggleViewLayout(NSView *view)
 
 static CGFloat margins(int margined)
 {
-	if (!margined)
-		return 0.0;
+	if (!margined) {
+        return 0.0;
+    } else if (margined > 1) {
+        return (CGFloat) margined;
+    }
+
 	return uiDarwinMarginAmount(NULL);
 }
 

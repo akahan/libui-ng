@@ -178,13 +178,24 @@ uiGroup *uiNewGroup(const char *title)
 	uiDarwinNewControl(uiGroup, g);
 
 	g->box = [[NSBox alloc] initWithFrame:NSZeroRect];
-	[g->box setTitle:uiprivToNSString(title)];
-	[g->box setBoxType:NSBoxPrimary];
-	[g->box setBorderType:NSLineBorder];
-	[g->box setTransparent:NO];
-	[g->box setTitlePosition:NSAtTop];
-	// we can't use uiDarwinSetControlFont() because the selector is different
-	[g->box setTitleFont:[NSFont systemFontOfSize:[NSFont systemFontSizeForControlSize:NSSmallControlSize]]];
+
+    NSTitlePosition titlePos = NSAtTop;
+    NSString * titleStr = uiprivToNSString(title);
+    bool isTitleEmpty = titleStr.length == 0;
+
+    if (isTitleEmpty) {
+        titlePos = NSNoTitle;
+    } else {
+        [g->box setTitle:titleStr];
+    }
+
+    [g->box setTitlePosition:titlePos];
+
+    [g->box setBoxType:NSBoxPrimary];
+    [g->box setBorderType:NSLineBorder];
+    [g->box setTransparent:NO];
+    // we can't use uiDarwinSetControlFont() because the selector is different
+    [g->box setTitleFont:[NSFont systemFontOfSize:[NSFont systemFontSizeForControlSize:NSSmallControlSize]]];
 
 	// default to low hugging to not hug edges
 	g->horzHuggingPri = NSLayoutPriorityDefaultLow;
