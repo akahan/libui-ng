@@ -59,6 +59,14 @@ void uiTableModelRowDeleted(uiTableModel *m, int oldIndex)
 	}
 }
 
+void uiTableModelReload(uiTableModel *m)
+{
+    for (auto t : *(m->tables)) {
+        if (ListView_RedrawItems(t->hwnd, 0, ListView_GetItemCount(t->hwnd)-1) == -1)
+        logLastError(L"error calling ListView_RedrawItems() in uiTableModelRowDeleted()");
+    }
+}
+
 static void defaultOnRowClicked(uiTable *table, int row, void *data)
 {
 	// do nothing

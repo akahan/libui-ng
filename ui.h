@@ -3664,6 +3664,14 @@ _UI_EXTERN void uiTableModelRowChanged(uiTableModel *m, int index);
  * @memberof uiTableModel
  */
 _UI_EXTERN void uiTableModelRowDeleted(uiTableModel *m, int oldIndex);
+
+/**
+ * Informs all associated uiTable views about reload data.
+ *
+ * @param m Table model that has changed.
+ * @memberof uiTableModel
+ */
+_UI_EXTERN void uiTableModelReload(uiTableModel *m);
 // TODO reordering/moving
 
 /** Parameter to editable model columns to signify all rows are never editable. */

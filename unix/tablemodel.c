@@ -279,6 +279,11 @@ void uiTableModelRowDeleted(uiTableModel *m, int oldIndex)
 	gtk_tree_path_free(path);
 }
 
+void uiTableModelReload(uiTableModel *m)
+{
+    //TODO
+}
+
 uiTableModelHandler *uiprivTableModelHandler(uiTableModel *m)
 {
 	return m->mh;

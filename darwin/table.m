@@ -183,6 +183,13 @@ void uiTableModelRowInserted(uiTableModel *m, int newIndex)
 	// set is autoreleased
 }
 
+void uiTableModelReload(uiTableModel *m)
+{
+    NSTableView *tv;
+    for (tv in m->tables)
+        [tv reloadData];
+}
+
 void uiTableModelRowChanged(uiTableModel *m, int index)
 {
 	uiprivTableView *tv;
