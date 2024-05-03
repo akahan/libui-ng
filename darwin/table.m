@@ -190,6 +190,18 @@ void uiTableModelReload(uiTableModel *m)
         [tv reloadData];
 }
 
+void uiTableModelClear(uiTableModel *m)
+{
+    NSTableView *tv;
+    NSIndexSet *set;
+
+    for (tv in m->tables) {
+        set = [NSIndexSet indexSetWithIndexesInRange: NSMakeRange(0, [tv numberOfRows])];
+        [tv removeRowsAtIndexes:set withAnimation: NSTableViewAnimationEffectNone];
+    }
+    // set is autoreleased
+}
+
 void uiTableModelRowChanged(uiTableModel *m, int index)
 {
 	uiprivTableView *tv;

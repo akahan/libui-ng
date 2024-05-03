@@ -3672,6 +3672,15 @@ _UI_EXTERN void uiTableModelRowDeleted(uiTableModel *m, int oldIndex);
  * @memberof uiTableModel
  */
 _UI_EXTERN void uiTableModelReload(uiTableModel *m);
+
+/**
+ * Clear all associated uiTable views data.
+ *
+ * @param m Table model that has changed.
+ * @memberof uiTableModel
+ */
+_UI_EXTERN void uiTableModelClear(uiTableModel *m);
+
 // TODO reordering/moving
 
 /** Parameter to editable model columns to signify all rows are never editable. */
