@@ -389,6 +389,7 @@ static HRESULT drawButtonPart(HRESULT hr, struct drawState *s)
 {
 	uiTableValue *value;
 	WCHAR *wstr;
+    size_t wstr_len;
 	bool enabled;
 	HTHEME theme;
 	RECT r;
@@ -402,6 +403,11 @@ static HRESULT drawButtonPart(HRESULT hr, struct drawState *s)
 	value = uiprivTableModelCellValue(s->model, s->iItem, s->p->buttonModelColumn);
 	wstr = toUTF16(uiTableValueString(value));
 	uiFreeTableValue(value);
+
+    wstr_len = wcslen(wstr);
+    if (wstr_len == 0)
+        return S_OK;
+
 	enabled = uiprivTableModelCellEditable(s->model, s->iItem, s->p->buttonClickableModelColumn);
 
 	theme = OpenThemeData(s->t->hwnd, L"button");

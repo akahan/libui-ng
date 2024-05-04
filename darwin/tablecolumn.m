@@ -528,6 +528,7 @@ struct textColumnCreateParams {
 	[self->b setTitle:str];
 
 	[self->b setEnabled:uiprivTableModelCellEditable(self->m, row, self->editableColumn)];
+    [self->b setNeedsDisplay: (BOOL)(str.length != 0)];
 }
 
 - (IBAction)uiprivOnClicked:(id)sender
