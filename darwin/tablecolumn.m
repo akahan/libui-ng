@@ -483,6 +483,7 @@ struct textColumnCreateParams {
 		[self->b setTarget:self];
 		[self->b setAction:@selector(uiprivOnClicked:)];
 		[self->b setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [self->b setNeedsDisplay: NO];
 		[self addSubview:self->b];
 
 		// TODO set hugging and compression resistance properly
